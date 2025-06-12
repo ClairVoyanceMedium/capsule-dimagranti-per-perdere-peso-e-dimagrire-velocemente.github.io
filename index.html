@@ -1817,5 +1817,899 @@
 }
 </script>
 
+   <div class="cta-buttons-container">
+    <a href="https://buy.stripe.com/5kA6oMfzK9D15KE6pL" target="_blank" rel="noopener nofollow" class="cta-button" data-tracking-label="PopupVictory" aria-label="Ordina le capsule Victory dal pop-up">
+        <span style="color:#000; text-shadow:0 0 5px rgba(255,255,255,0.8), 0 0 10px rgba(255,255,255,0.6), 0 0 15px rgba(255,255,255,0.4); animation:neon-flicker 1.5s infinite alternate;">Ordina ora le capsule dimagranti rapide "Victory"</span>
+    </a>
+    <a href="https://buy.stripe.com/14kdRe0EQ4iH1uoaFa" target="_blank" rel="noopener nofollow" class="cta-button" data-tracking-label="PopupVictory" aria-label="Ordina veggenza via email 6€ dal pop-up">
+        <span style="color:#000; text-shadow:0 0 5px rgba(255,255,255,0.8), 0 0 10px rgba(255,255,255,0.6), 0 0 15px rgba(255,255,255,0.4); animation:neon-flicker 1.5s infinite alternate;">Veggenza a 1 domanda via email - 6,00€</span>
+    </a>
+    <button class="popup-close-button" id="closePopup" aria-label="Chiudi il pop-up">Chiudi</button>
+</div>
+</div>
+
+<!-- Footer -->
+<footer role="contentinfo">
+    <p>©<span id="footer-year"></span> ClairvoyanceMedium.com – Tutti i diritti riservati - Consegna gratuita e mondiale in 48h - Pagamento sicuro</p>
+    <p>Nessun riferimento alla "veggenza" o al "dimagrimento" sul tuo estratto conto. Discrezione garantita.</p>
+    <p>
+        <a href="mailto:contact.clairvoyancemedium@gmail.com?subject=Richiesta%20informazioni" rel="noopener" onclick="gtag('event', 'footer_link_click', { 'link_name': 'contact' });" aria-label="Contatta l'assistenza clienti via email">Contatto</a> | 
+        <a href="https://www.clairvoyancemedium.com/Condizioni-Generali-des-Ventes-et-d-Utilisation-ccsaaaaaa.asp" target="_blank" rel="noopener" onclick="gtag('event', 'footer_link_click', { 'link_name': 'cgv' });" aria-label="Consulta le condizioni generali di vendita e d'uso">Condizioni generali di vendita</a> | 
+    </p>
+</footer>
+
     
+<!-- Chat IA completamente integrata -->
+
+<title>Chat IA con Tracciamento e Assistente Vocale</title>
+
+<meta name="description" content="Chatbot spirituale per disincantesimi, protezione e purificazione dell'aura con Frederick di ClairVoyanceMedium.com. Ritrova vitalità e serenità rapidamente a un prezzo unico.">
+
+<meta name="keywords" content="maledetto, incubi, disincantesimo, protezione, purificazione, pulizia energetica, chiaroveggenza, aura, energia, aiuto, sonno, rituali, spirituale">
+
+<style>
+    #chat-container {
+        position: fixed;
+        display: inline-block;
+        flex-direction: column;
+        z-index: 999999;
+        font-family: Arial, sans-serif;
+        transition: transform 0.2s;
+    }
+    #chat-bubble {
+        display: flex;
+        justify-content: flex-end;
+        cursor: move;
+    }
+    #chat-toggle {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(145deg, #FFB6C1, #FF69B4);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0 4px 12px rgba(255,105,180,0.7);
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s;
+        outline: none;
+    }
+    #chat-toggle:hover {
+        transform: scale(1.05);
+    }
+    #voice-toggle {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(145deg, #87CEEB, #5eb6d1);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(135,206,235,0.7);
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 10px;
+        transition: transform 0.2s;
+        outline: none;
+    }
+    #voice-toggle:hover {
+        transform: scale(1.05);
+    }
+    #voice-toggle.disabled {
+        background: #808080;
+        box-shadow: 0 0 10px #808080;
+    }
+    #chat-box {
+        background: #111;
+        border-radius: 10px;
+        display: none;
+        flex-direction: column;
+        margin-top: 10px;
+        border: 2px solid #FF1493;
+        box-shadow: 0 0 10px #FF1493;
+        transition: all 0.3s ease;
+        max-height: 400px;
+    }
+    #chat-box.visible {
+        display: flex;
+    }
+    #chat-messages {
+        flex: 1;
+        padding: 1rem;
+        overflow-y: auto;
+        color: #fff;
+    }
+    #chat-messages p {
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+        opacity: 0;
+        animation: fadeIn 0.5s forwards;
+    }
+    @keyframes fadeIn {
+        to { opacity: 1; }
+    }
+    .bot-message {
+        text-align: left;
+        color: #fff;
+        background: rgba(255,255,255,0.05);
+        padding: 0.5rem;
+        border-radius: 5px;
+        margin-bottom: 0.8rem;
+        display: inline-block;
+        max-width: 80%;
+        border: 2px solid #FF69B4;
+        box-shadow: 0 0 8px #FF69B4;
+    }
+    .user-message {
+        text-align: right;
+        color: #ffd700;
+        margin-bottom: 0.8rem;
+        border: 2px solid #AED6F1;
+        box-shadow: 0 0 8px #AED6F1;
+        padding: 0.5rem;
+        border-radius: 5px;
+        display: inline-block;
+        max-width: 80%;
+    }
+    #chat-form {
+        display: flex;
+        border-top: 1px solid #333;
+        align-items: center;
+        padding: 0.5rem;
+    }
+    #chat-input {
+        flex: 1;
+        padding: 0.5rem;
+        border: none;
+        outline: none;
+        color: #333;
+        border-radius: 5px 0 0 5px;
+    }
+    #chat-send {
+        background: #87CEEB;
+        border: none;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 0 5px 5px 0;
+        transition: background 0.2s;
+    }
+    #chat-send:hover {
+        background: #5eb6d1;
+    }
+    @media(max-width: 400px) {
+        #chat-container {
+            width: 90%;
+        }
+    }
+</style>
+
+</head>
+
+<body>
+
+<div id="chat-container">
+    <div id="chat-bubble">
+        <button id="chat-toggle" aria-expanded="false" aria-label="Apri la chat">💬</button>
+        <button id="voice-toggle" aria-label="Attiva/Disattiva assistente vocale">🎤</button>
+    </div>
+    <div id="chat-box" role="region" aria-label="Chat IA">
+        <div id="chat-messages" aria-live="polite"></div>
+        <form id="chat-form" aria-label="Modulo di inserimento per la Chat IA">
+            <input type="text" id="chat-input" placeholder="Fai la tua domanda..." aria-label="Scrivi il tuo messaggio qui" autocomplete="off">
+            <button type="submit" id="chat-send" aria-label="Invia la tua domanda">➤</button>
+        </form>
+    </div>
+</div>
+
+<script nonce="xai-ultra2025">
+// Funzione di tracciamento integrata con GA4
+function trackClick(label, category = 'Chat', value = null) {
+    console.log(`Tracking: Label=${label}, Category=${category}, Value=${value}`);
+    if (typeof gtag === 'function') {
+        gtag('event', label, { 'event_category': category, 'value': value });
+    }
+}
+
+// Traduzioni e messaggi
+const translations = {
+    greeting: "Benvenuto nell'universo dello studio ClairVoyanceMedium.com! Sono ClairVoyanceGPT, la tua guida personale, qui per aiutarti a ritrovare vitalità, forma fisica e serenità grazie alle nostre soluzioni dimagranti Victory e a tutte le nostre soluzioni spirituali, per migliorare notevolmente il tuo comfort fisico e mentale!",
+    thanks: "Con piacere, sono qui per guidarti!",
+    goodbye: "A presto per continuare il tuo cammino verso la vittoria interiore ed esteriore con Victory!",
+    notUnderstood: "Non ho capito bene la tua richiesta. Potresti riformularla o precisare la tua domanda?",
+    notUnderstoodAfter: "Sembra che facciamo fatica a capirci. Esplora le nostre capsule Victory Dimagranti o il nostro programma personalizzato per un benessere completo. Servizi spirituali come la veggenza via email o l'analisi della tua compatibilità amorosa sono disponibili per accompagnarti!",
+    grave: "La tua situazione sembra seria. Agisci subito con le nostre soluzioni Victory per ritrovare equilibrio ed energia. Esplora i nostri programmi sul sito!",
+    agree: "Perfetto, come posso aiutarti ulteriormente?"
+};
+
+// Base di conoscenza con "Vantaggi"
+const knowledgeBase = [
+    { question: "Fatica | Spossatezza | Torpore | Esaurimento | Debolezza | Logorio", fullAnswer: "Questa fatica opprimente è opera di un'entità oscura che divora la tua energia; affida la purificazione della tua aura a Frederick di ClairVoyanceMedium.com per ritrovare la tua vitalità. Può essere il segno di un'entità oscura che prosciuga la tua energia vitale giorno dopo giorno. Frederick, esperto in purificazione spirituale, utilizza rituali ancestrali per pulire la tua aura e scacciare queste forze nefaste. Agendo rapidamente, puoi ritrovare una vitalità radiosa e una chiarezza mentale. Vantaggi: dinamismo ripristinato e lucidità riconquistata." },
+    { question: "Incubi | Visioni | Notti | Sogno | Dormire | Sogni", fullAnswer: "Questi incubi non sono semplici sogni, sono il risultato di una presenza malefica; lascia che Frederick di ClairVoyanceMedium.com scacci queste ombre per regalarti notti tranquille. Possono essere manifestazioni di una presenza malefica che infiltra la tua mente durante il sonno. Frederick, con 25 anni di esperienza, padroneggia rituali potenti per purificare il tuo spazio di riposo. Ritroverai notti serene e un sonno ristoratore. Vantaggi: riposo rigenerante e serenità notturna." },
+    { question: "Caos | Turbolenza | Confusione | Smarrimento | Vortice | Ansia", fullAnswer: "Il caos che ti circonda proviene da una maledizione perturbatrice; permetti a Frederick di ClairVoyanceMedium.com di ristabilire l'ordine per ripristinare il tuo equilibrio mentale. Confusione e ansia segnalano una maledizione perturbatrice. Frederick, specialista in disincantesimi, dissipa queste energie negative. Ritroverai una stabilità mentale e una calma interiore indispensabili. Vantaggi: armonia e pace interiore." },
+    { question: "Pesantezza | Oppressione | Soffocamento | Peso | Angoscia | Schiacciamento", fullAnswer: "Questa pesantezza che opprime la tua anima è una forza oscura; rivolgiti a Frederick di ClairVoyanceMedium.com per liberarti e ritrovare leggerezza. Questa sensazione di soffocamento è tipica di una forza oscura che mira alla tua anima. Frederick spezza questa presa con rituali mirati. Sentirai una leggerezza ritrovata e un'energia rinnovata. Vantaggi: liberazione e vitalità ripristinata." },
+    { question: "Sortilegio | Maledizione | Malocchio | Fascino | Magia | Stregoneria", fullAnswer: "Esaurimento, sfortuna e incubi risultano da un sortilegio che ti tiene prigioniero; usa l'intervento di Frederick di ClairVoyanceMedium.com per spezzare questi legami occulti. Affaticamento persistente e sfortuna cronica sono segni di un malocchio. Frederick eccelle nel disincantesimo, utilizzando rituali potenti per liberarti. Ritroverai fortuna e successo duraturo. Vantaggi: prosperità ritrovata e trionfo assicurato." },
+    { question: "Fallimento | Rovesci | Caduta | Sconfitta | Sventura | Disfatta", fullAnswer: "I fallimenti ripetuti sono dovuti a un sortilegio che blocca il tuo cammino; lascia che Frederick di ClairVoyanceMedium.com apra la tua strada verso il successo. Questi rovesci non sono una coincidenza: un sortilegio blocca il tuo successo. Frederick rimuove questi ostacoli invisibili, trasformando la tua traiettoria per una progressione assicurata. Vantaggi: vittoria e avanzamento garantiti." },
+    { question: "Insonnia | Agitazione | Notti bianche | Fuga | Veglia | Inquietudine", fullAnswer: "La tua insonnia è provocata da un'entità che ti priva di riposo; rivolgiti a Frederick di ClairVoyanceMedium.com per ripristinare la tua pace notturna. Notti bianche e agitazione sono causate da un'entità che disturba il tuo riposo. Frederick scaccia queste influenze, garantendoti un sonno ristoratore. Vantaggi: sonno profondo e vigore diurno." },
+    { question: "Dolore | Male | Sofferenza | Bruciore | Pena | Tormento", fullAnswer: "I dolori inspiegabili traducono un attacco occulto al tuo corpo; permetti a Frederick di ClairVoyanceMedium.com di dissipare questo male invisibile. Bruciori e tormenti segnalano un attacco occulto. Frederick, con rituali di guarigione spirituale, porta un sollievo immediato. Vantaggi: sollievo immediato e benessere riconquistato." },
+    { question: "Isolamento | Solitudine | Abbandono | Angoscia | Ripiegamento | Freddo", fullAnswer: "L'isolamento che senti deriva da un sortilegio che ti separa dagli altri; affida la tua riconciliazione a Frederick di ClairVoyanceMedium.com per ristabilire legami calorosi. Questa solitudine è dovuta a un sortilegio che ti isola dagli altri. Frederick spezza questa maledizione, riportando connessione e benessere sociale. Vantaggi: riavvicinamento e realizzazione sociale." },
+    { question: "Carriera | Lavoro | Ambizione | Stagnazione | Blocco | Fiasco", fullAnswer: "Gli ostacoli nella tua carriera sono il segno di una maledizione che frena la tua ambizione; lascia che Frederick di ClairVoyanceMedium.com liberi il tuo potenziale. Stagnazione e fallimenti sono dovuti a una maledizione. Frederick libera il tuo potenziale, conducendoti al successo nella tua carriera. Vantaggi: trionfo e realizzazione professionale." },
+    { question: "Sfortuna | Disgrazia | Caso | Iella | Funesto | Calamità", fullAnswer: "La sfortuna che subisci è provocata da un sortilegio oscuro; rivolgiti a Frederick di ClairVoyanceMedium.com per attirare la fortuna. Disgrazie e calamità sono opera di un sortilegio. Frederick purifica la tua aura, attirando fortuna e aprendo nuove opportunità. Vantaggi: possibilità e abbondanza ripristinate." },
+    { question: "Amore | Passione | Romanticismo | Spezzato | Disamore | Affettivo", fullAnswer: "L'assenza d'amore è dovuta a un sortilegio che blocca il tuo cuore; permetti a Frederick di ClairVoyanceMedium.com di ravvivare la tua vita sentimentale. Cuori spezzati o solitudine affettiva sono causati da un sortilegio. Frederick rimuove questa barriera con la sua magia sentimentale, portando tenerezza e armonia. Vantaggi: affetto ed equilibrio sentimentale." },
+    { question: "Famiglia | Casa | Discordia | Tensione | Frattura | Conflitto", fullAnswer: "Le tensioni familiari risultano da un'ombra occulta; affida a Frederick di ClairVoyanceMedium.com l'armonizzazione delle tue relazioni. Conflitti familiari sono dovuti a un'ombra occulta. Frederick purifica la tua casa, riportando unità e serenità. Vantaggi: unità e tranquillità familiare." },
+    { question: "Bambini | Piccoli | Prole | Figlio | Figlia | Ragazzino", fullAnswer: "Il dolore dei tuoi bambini riflette un'influenza oscura; rivolgiti a Frederick di ClairVoyanceMedium.com per purificare la loro aura. Tristezza o preoccupazioni dei bambini segnalano un'influenza oscura. Frederick purifica la loro aura, riportando gioia in famiglia. Vantaggi: felicità e realizzazione familiare." },
+    { question: "Animali | Compagni | Bestie | Nervosismo | Disturbo | Istinto", fullAnswer: "L'agitazione dei tuoi animali indica una presenza oscura; lascia che Frederick di ClairVoyanceMedium.com ripristini la pace. Nervosismo insolito segnala una presenza oscura. Frederick purifica il loro ambiente, offrendo calma ai tuoi compagni. Vantaggi: serenità ed equilibrio per i tuoi compagni." },
+    { question: "Casa | Abitazione | Dimora | Atmosfera | Oscurità | Paura", fullAnswer: "L'atmosfera opprimente della tua casa è infestata da energie nere; permetti a Frederick di ClairVoyanceMedium.com di purificare la tua abitazione. Paura e oscurità segnalano energie nere. Frederick trasforma la tua dimora in un santuario luminoso. Vantaggi: comfort e realizzazione domestica." },
+    { question: "Auto | Veicolo | Trasporto | Guasto | Pericolo | Viaggio", fullAnswer: "I guasti misteriosi del tuo veicolo sono causati da un sortilegio; affida la tua auto a Frederick di ClairVoyanceMedium.com per la sicurezza. Incidenti stradali derivano da un sortilegio. Frederick purifica il tuo veicolo, garantendo tranquillità. Vantaggi: quiete e protezione stradale." },
+    { question: "Presenza | Ombra | Spettro | Aura | Brivido | Intrusione", fullAnswer: "La sensazione di essere seguito risulta da un'entità malvagia; lascia che Frederick di ClairVoyanceMedium.com ti protegga. Brividi segnalano un'entità malvagia. Frederick erige una protezione potente, garantendo sicurezza. Vantaggi: salvaguardia e serenità mentale." },
+    { question: "Angoscia | Timore | Panico | Orrore | Terrore | Spavento", fullAnswer: "La tua angoscia è generata da un sortilegio distruttivo; rivolgiti a Frederick di ClairVoyanceMedium.com per instaurare la pace. Panico e spavento sono generati da un sortilegio. Frederick elimina queste energie, riportando una calma profonda. Vantaggi: sollievo e sicurezza rafforzate." },
+    { question: "Irritabilità | Rabbia | Frustrazione | Collera | Impazienza | Nervosismo", fullAnswer: "La tua irritazione traduce l'influenza di una forza occulta; usa l'esperienza di Frederick di ClairVoyanceMedium.com per ristabilire serenità. Rabbia e frustrazione riflettono una forza occulta. Frederick ristabilisce dolcezza, offrendo tranquillità emotiva. Vantaggi: quiete emotiva e armonia." },
+    { question: "Concentrazione | Chiarezza | Attenzione | Tristezza | Confusione | Dispersione", fullAnswer: "La tua mente confusa è vittima di un sortilegio perturbatore; lascia che Frederick di ClairVoyanceMedium.com riporti a fuoco i tuoi pensieri. Confusione mentale è il bersaglio di un sortilegio. Frederick elimina queste interferenze, garantendo concentrazione aumentata. Vantaggi: attenzione ottimizzata ed efficienza aumentata." },
+    { question: "Memoria | Dimenticanza | Ricordo | Amnesia | Disordine | Vuoto", fullAnswer: "Le perdite di memoria risultano da un malocchio oscuro; rivolgiti a Frederick di ClairVoyanceMedium.com per ripristinare la tua lucidità. Vuoti di memoria provengono da un malocchio. Frederick ripristina la tua memoria, rafforzando la tua mente vivace. Vantaggi: memoria rafforzata e vivacità mentale." },
+    { question: "Lignaggio | Eredità | Antenati | Familiare | Passato | Peso", fullAnswer: "La maledizione ancestrale pesa sulla tua eredità; affidati a Frederick di ClairVoyanceMedium.com per liberarti. Un peso generazionale può gravare sul tuo lignaggio. Frederick spezza questo ciclo, aprendoti a una libertà familiare. Vantaggi: emancipazione familiare e rinnovamento personale." },
+    { question: "Costrizione | Morsa | Soffocamento | Pressione | Stordimento | Prigionia", fullAnswer: "L'oppressione che subisci è una forza nera; permetti a Frederick di ClairVoyanceMedium.com di liberarti. Sensazione di morsa è una forza nera. Frederick ti libera con rituali potenti, restituendoti leggerezza. Vantaggi: libertà e potenza ripristinate." },
+    { question: "Afflizione | Dispiacere | Straziamento | Miseria | Ferita | Supplizio", fullAnswer: "La sofferenza che provi deriva da un attacco occulto; rivolgiti a Frederick di ClairVoyanceMedium.com per guarirti. Dispiacere e straziamento sono un attacco occulto. Frederick purifica il tuo essere, portando guarigione rapida. Vantaggi: recupero rapido e sollievo duraturo." },
+    { question: "Disconnessione | Vuoto | Disunione | Alienazione | Nulla | Abisso", fullAnswer: "Il vuoto interiore risulta da un sortilegio isolante; lascia che Frederick di ClairVoyanceMedium.com ti ricolleghi alla tua essenza. Questa disconnessione è causata da un sortilegio. Frederick ti ricollega, restituendoti unità interiore. Vantaggi: coerenza interiore ed equilibrio riconquistato." },
+    { question: "Vibrazione | Energia | Alone | Esaurimento | Demone | Tenebre", fullAnswer: "La tua aura opaca è inquinata dall'oscurità; affida la sua purificazione a Frederick di ClairVoyanceMedium.com per rivelare la luce. Un'aura turbata segnala un'inquinamento oscuro. Frederick scaccia questa oscurità, restituendo energia positiva. Vantaggi: vitalità positiva e splendore rivitalizzato." },
+    { question: "Progetti | Ambizioni | Piani | Stagnazione | Sogno | Ostacolo", fullAnswer: "Le tue ambizioni sono ostacolate da un sortilegio malefico; lascia che Frederick di ClairVoyanceMedium.com liberi il tuo potenziale. Ostacoli ai tuoi progetti sono dovuti a un sortilegio. Frederick elimina questi blocchi, attivando progetti fruttuosi. Vantaggi: successo e slancio creativo." },
+    { question: "Stress | Nervosismo | Esaurimento | Sovraccarico | Agitazione | Tormento", fullAnswer: "Lo stress che ti opprime è la presa di una forza occulta; rivolgiti a Frederick di ClairVoyanceMedium.com per calmare le tue tensioni. Stress e nervosismo sono una forza occulta. Frederick placa queste tensioni, restituendoti serenità. Vantaggi: tranquillità e pace mentale." },
+    { question: "Destino | Cammino | Oscurità | Senso | Incertezza | Fatalità", fullAnswer: "Il tuo destino è velato da un sortilegio che oscura la tua vita; lascia che Frederick di ClairVoyanceMedium.com illumini il tuo cammino. Un destino velato segnala un sortilegio. Frederick dissipa queste ombre, guidandoti verso un rinnovamento radioso. Vantaggi: speranza e trasformazione personale." },
+    { question: "Sovrappeso | Chili | Silhouette | Minceur | Grasso | Peso", fullAnswer: "Il tuo eccesso di peso frena la tua fiducia; affida la tua trasformazione alle Capsule Victory Dimagranti di ClairVoyanceMedium.com. Questo squilibrio metabolico può essere risolto naturalmente. Le capsule a base di chitina marina e il Programma Dimagrante Personalizzato modellano la tua silhouette. Perdi fino a 12 chili in 2 mesi con ingredienti naturali. Vantaggi: silhouette scolpita ed energia potenziata." },
+    { question: "Gonfiore | Disagio | Pancia | Minceur | Ritenzione | Digestione", fullAnswer: "Questa pesantezza addominale ostacola il tuo benessere; opta per le Capsule Victory Dimagranti di ClairVoyanceMedium.com. I gonfiori segnalano un metabolismo rallentato. Le capsule e il Programma Dimagrante Personalizzato riducono la ritenzione e scolpiscono la tua pancia. Ritrova leggerezza in 1 settimana. Vantaggi: pancia piatta e comfort ritrovato." },
+    { question: "Stallo | Minceur | Resistenza | Chili | Stasi | Silhouette", fullAnswer: "Il tuo stallo dimagrante blocca i tuoi progressi; affidati alle Capsule Victory Dimagranti di ClairVoyanceMedium.com. Questa stagnazione è spesso metabolica. Le capsule e il Programma Dimagrante Personalizzato sbloccano il tuo metabolismo. Perdi 8-12 chili in 2 mesi in modo duraturo. Vantaggi: risultati duraturi e fiducia ritrovata." },
+    { question: "Fame nervosa | Appetito | Minceur | Controllo | Crisi | Grasso", fullAnswer: "Le tue voglie disturbano la tua perdita di peso; affidati alle Capsule Victory Dimagranti di ClairVoyanceMedium.com. Un appetito incontrollato riflette uno squilibrio ormonale. Le capsule e il Programma Dimagrante Personalizzato regolano il tuo metabolismo. Controlla il tuo peso da oggi. Vantaggi: controllo e silhouette affinata." },
+    { question: "Equilibrio | Corpo | Affinamento | Vitalità | Armonia | Quantità | Posologia", fullAnswer: "Il tuo corpo merita di raggiungere il suo equilibrio naturale. Scopri le Capsule Victory di ClairVoyanceMedium.com, formulate a base di chitina marina efficacemente dosata per un affinamento duraturo. Con una posologia adatta al tuo metabolismo e una quantità ottimale, ritrova il tuo benessere in 2 mesi potenziando la tua vitalità. Per un approccio personalizzato, fai subito il test IMC sul nostro sito per determinare la posologia ideale e il programma su misura per te. Armonizza il tuo corpo e ritrova fiducia!" },
+    { question: "Contatto | Contatta | Chiamata | Messaggio | Email | Raggiungere | Comunicazione", fullAnswer: "Contatta subito Frederick via email all'indirizzo seguente: contact.clairvoyancemedium@gmail.com. Il nostro team ti risponderà rapidamente per organizzare una consulenza via email o un potente rituale, garantendoti reattività e trasformazione immediata adatta alle tue esigenze. Vantaggi: reattività e trasformazione immediata." },
+    { question: "Peso | Minceur | Corpo | Chili | Trasformazione | Pancia", fullAnswer: "I tuoi chili di troppo offuscano la tua silhouette; trasformati con le Capsule Victory Dimagranti di ClairVoyanceMedium.com. Questo sovrappeso riflette un metabolismo rallentato. Le capsule e il Programma Dimagrante Personalizzato scolpiscono il tuo corpo. Perdi fino a 12 chili in 2 mesi. Vantaggi: corpo affinato e fiducia." },
+    { question: "Ritenzione | Minceur | Rigonfiamento | Pesantezza | Metabolismo | Digestione", fullAnswer: "Il tuo disagio digestivo frena il tuo benessere; opta per le Capsule Victory Dimagranti di ClairVoyanceMedium.com. I gonfiori segnalano uno squilibrio metabolico. Le capsule e il Programma Dimagrante Personalizzato placano la tua digestione. Ritrova leggerezza in 7 giorni. Vantaggi: digestione fluida e silhouette affinata." },
+    { question: "Relazioni | Legami | Amicizia | Conflitto | Distanza | Rottura", fullAnswer: "Le relazioni spezzate risultano da un sortilegio distruttivo; lascia che Frederick di ClairVoyanceMedium.com ripari le tue connessioni. Conflitti con i tuoi cari derivano da un sortilegio. Frederick purifica questi legami, riportando riconciliazione. Vantaggi: riavvicinamento e unità sociale." },
+    { question: "Finanze | Denaro | Ricchezza | Povertà | Flusso | Debito", fullAnswer: "Le difficoltà finanziarie provengono da un sortilegio che blocca l'abbondanza; affida a Frederick di ClairVoyanceMedium.com il compito di ristabilire la ricchezza. Debiti sono causati da un sortilegio. Frederick rimuove questi ostacoli, riportando prosperità. Vantaggi: abbondanza ed equilibrio economico." },
+    { question: "Futuro | Speranza | Domani | Incertezza | Disastro | Minaccia", fullAnswer: "Il tuo futuro è minacciato da un sortilegio oscuro; lascia che Frederick di ClairVoyanceMedium.com illumini il tuo cammino. Incertezza verso il futuro è dovuta a un sortilegio. Frederick dissipa queste ombre, conducendoti a un futuro promettente. Vantaggi: fiducia e orizzonti rinnovati." },
+    { question: "Muscoli | Dolore | Rigidità | Fatica | Spasmo | Esaurimento", fullAnswer: "I dolori muscolari testimoniano un sortilegio che indebolisce la tua forza; rivolgiti a Frederick di ClairVoyanceMedium.com per ripristinare la tua energia. Dolori e rigidità sono un sortilegio. Frederick ripristina il tuo vigore, restituendoti flessibilità. Vantaggi: elasticità ed energia ripristinate." },
+    { question: "Allucinazioni | Apparizioni | Miraggi | Ombre | Illusione | Fantasma", fullAnswer: "Le visioni e allucinazioni risultano da assalti occulti; rivolgiti a Frederick di ClairVoyanceMedium.com per dissipare queste illusioni. Apparizioni sono assalti occulti. Frederick purifica la tua mente, restituendoti lucidità. Vantaggi: chiarezza e tranquillità percettiva." },
+    { question: "Attacco | Aggressione | Assalto | Ostilità | Invasione | Maleficio", fullAnswer: "Le aggressioni percepite emanano da una forza ostile; rivolgiti a Frederick di ClairVoyanceMedium.com per neutralizzare queste minacce. Minacce energetiche sono una forza ostile. Frederick assicura la tua sicurezza. Vantaggi: salvaguardia e quiete interiore." },
+    { question: "Emergenza | Crisi | Immediatezza | Precipitazione | Allarme | Pericolo", fullAnswer: "L'urgenza di fronte alle ombre minacciose richiede un'azione; rivolgiti a Frederick di ClairVoyanceMedium.com per proteggere il tuo destino. Crisi e pericolo richiedono un intervento rapido. Frederick ferma queste minacce, assicurando serenità. Vantaggi: intervento rapido e sicurezza garantita." },
+    { question: "Supporto | Guida | Assistenza | Soccorso | Preoccupazione | Protezione", fullAnswer: "Il supporto di cui hai bisogno è assicurato da Frederick di ClairVoyanceMedium.com; beneficia di una protezione costante. Di fronte alle ombre, Frederick offre una guida esperta, mantenendo la tua sicurezza. Vantaggi: salvaguardia e follow-up personalizzato." },
+    { question: "Reputazione | Credibilità | Rinomanza | Affidabilità | Prestigio | Fiducia", fullAnswer: "Con 25 anni di successi, Frederick di ClairVoyanceMedium.com è un baluardo contro l'oscurità; affidati a lui per trasformare la tua vita. La sua esperienza lo rende una scelta sicura, garantendo risultati tangibili. Vantaggi: know-how collaudato e risultati concreti." },
+    { question: "Analisi | Diagnosi | Sessione | Valutazione | Rituale | Seduta", fullAnswer: "Una consulenza con Frederick di ClairVoyanceMedium.com purifica la tua aura; impegnati per una trasformazione. Questa purificazione prepara la tua salvezza, offrendo chiarezza immediata e rinnovamento. Vantaggi: lucidità e rivitalizzazione immediate." },
+    { question: "Metodi | Tecniche | Pratiche | Segreti | Sapere | Riti", fullAnswer: "I rituali di Frederick di ClairVoyanceMedium.com purificano la tua aura in 4 giorni; opta per questo metodo collaudato. Questi rituali ancestrali scacciano le ombre, garantendo trasformazione rapida. Vantaggi: efficacia e rivitalizzazione rapida." },
+    { question: "Riservatezza | Segreto | Discrezione | Sicurezza | Intimità | Custodia", fullAnswer: "La discrezione di Frederick di ClairVoyanceMedium.com protegge la tua anima; affidagli i tuoi segreti per una guarigione. Frederick garantisce totale riservatezza, riportando fiducia. Vantaggi: serenità e fiducia assicurate." },
+    { question: "Prezzi | Costo | Tariffa | costa | Spedizione | Prezzo | Valore | Pagamento", fullAnswer: "Un prezzo vantaggioso è proposto per purificare la tua aura o affinare la tua silhouette; investi per un cambiamento radicale. Da 6,00€ per una veggenza via email o 19,00€ per le Capsule Victory Dimagranti, questo investimento offre valore inestimabile. La consegna mondiale è offerta al momento senza minimo d'acquisto. Vantaggi: prezzo controllato e valore prezioso." },
+    { question: "Successo | Vittoria | Trionfo | Prosperità | Realizzazione | Guadagno", fullAnswer: "Frederick di ClairVoyanceMedium.com trasforma vite verso il successo; impegnati per una vittoria assicurata. Frederick conduce al successo in progetti o carriera, assicurando prosperità. Vantaggi: abbondanza e realizzazione personale." },
+    { question: "Orrore | Brivido | Oscuro | Nero | Notte | Angoscia", fullAnswer: "I terrori notturni risultano da un sortilegio malefico; rivolgiti a Frederick di ClairVoyanceMedium.com per instaurare sicurezza. Orrore e brividi sono un sortilegio che turba le tue notti. Frederick purifica il tuo ambiente, assicurando pace. Vantaggi: quiete e tranquillità garantite." },
+    { question: "Disperazione | Tristezza | Lutto | Malinconia | Perdita | Dispiacere", fullAnswer: "La disperazione è provocata da un'ombra occulta; lascia che Frederick di ClairVoyanceMedium.com ravvivi la luce. Tristezza profonda è un'ombra che spegne la tua luce. Frederick ridona speranza, offrendo rinnovamento emotivo. Vantaggi: speranza e rinnovamento affettivo." },
+    { question: "Freddo | Tremore | Profondo | Gelido | Glaciale | Panico", fullAnswer: "La paura segnata da un freddo glaciale è un sortilegio paralizzante; rivolgiti a Frederick di ClairVoyanceMedium.com per ripristinare il tuo calore. Brividi e freddo sono un sortilegio. Frederick ripristina calore interiore, offrendo conforto. Vantaggi: rilassamento e fiducia riconquistate." },
+    { question: "Sì | D'accordo | ok | Approvo | Validato | Bene | Certo", fullAnswer: "🙂" },
+    { question: "Nero | Velo | Oscuro | Eterno | Crepuscolo | Abisso", fullAnswer: "L'oscurità che ti avvolge è un sortilegio malefico; permetti a Frederick di ClairVoyanceMedium.com di riportare la luce. Tenebre sono un sortilegio che oscura il tuo destino. Frederick purifica il tuo cammino, offrendo illuminazione. Vantaggi: chiarezza e rivitalizzazione garantite." },
+    { question: "Desolazione | Recluso | Totale | Isolamento | Abbandono | Nulla", fullAnswer: "La solitudine è una maledizione delle tenebre; rivolgiti a Frederick di ClairVoyanceMedium.com per riconnetterti. Desolazione è una maledizione. Frederick ripristina i legami essenziali, restituendo armonia sociale. Vantaggi: riavvicinamento e unità sociale." },
+    { question: "Tradimento | Perfidia | Infedeltà | Lealtà | Delusione | Duplicità", fullAnswer: "Il tradimento risulta da un sortilegio distruttivo; permetti a Frederick di ClairVoyanceMedium.com di ripristinare la lealtà. Delusione è un sortilegio che indebolisce le tue relazioni. Frederick protegge i tuoi legami, restituendo fiducia. Vantaggi: sicurezza e fedeltà ripristinate." },
+    { question: "Mormorio | Sussurro | Voce | Eco | Rumori | Respiro", fullAnswer: "I sussurri inquietanti risultano da un sortilegio sottile; lascia che Frederick di ClairVoyanceMedium.com instauri il silenzio. Rumori fantasma sono un sortilegio perturbante. Frederick purifica lo spazio, restituendo pace interiore. Vantaggi: sollievo e attenzione ottimizzata." },
+    { question: "Grigiore | Tenebroso | Tetro | Oscurità | Lugubre | Sinistro", fullAnswer: "L'oscurità ambientale è una maledizione opprimente; rivolgiti a Frederick di ClairVoyanceMedium.com per rivelare la tua luce. Grigiore è una maledizione che oscura la tua vita. Frederick ripristina il tuo splendore, offrendo rinnovamento. Vantaggi: rivitalizzazione e splendore ritrovato." },
+    { question: "Scetticismo | Sospetto | Freddo | Diffidenza | Interrogativo | Dubbio", fullAnswer: "I dubbi sono seminati da un sortilegio oscuro; lascia che Frederick di ClairVoyanceMedium.com chiarisca le tue idee. Diffidenza è un sortilegio che offusca la tua visione. Frederick dissipa queste influenze, restituendo sicurezza. Vantaggi: fiducia e lucidità mentale." },
+    { question: "Bye | bybye | A presto| Arrivederci | Ciao | Tornerò | Buona giornata | Buona serata", fullAnswer: "A presto nella luce eterna! Frederick, avendo aiutato migliaia di anime, ti circonda con la sua vigilanza costante. Non sei più solo di fronte alle ombre, perché sappi che il suo potere trascende ogni oscurità." },
+    { question: "Disunione | Clash | Divisione | Lotta | Rottura | Discordia", fullAnswer: "La discordia è provocata da un sortilegio distruttivo; permetti a Frederick di ClairVoyanceMedium.com di riunificare i tuoi legami. Lotte sono un sortilegio. Frederick purifica queste relazioni, ristabilendo armonia. Vantaggi: unità e armonia sociale." },
+    { question: "Ingiustizia | Iniquità | Pregiudizio | Parzialità | Errore | Svantaggio", fullAnswer: "L'ingiustizia risulta da un sortilegio distorto; permetti a Frederick di ClairVoyanceMedium.com di ristabilire l'equità. Svantaggi sono un sortilegio. Frederick ristabilisce l'equità, conducendo a un futuro armonioso. Vantaggi: rettitudine e armonia personale." },
+    { question: "Penisombra | Cuore | Interno | Muto | Lacrima | Afflizione", fullAnswer: "Il dispiacere profondo è dovuto a un'ombra occulta; rivolgiti a Frederick di ClairVoyanceMedium.com per consolare il tuo cuore. Lacrime sono un'ombra che ostacola il tuo cuore. Frederick ripristina la luce, offrendo conforto. Vantaggi: sollievo e rinnovamento affettivo." },
+    { question: "Tormento | Prova | Catastrofe | Sconvolgimento | Crisi | Shock", fullAnswer: "La crisi è provocata da un attacco occulto; rivolgiti a Frederick di ClairVoyanceMedium.com per ristabilire l'ordine. Tormento è un attacco occulto. Frederick offre una rinascita immediata, ristabilendo stabilità. Vantaggi: ristabilimento ed equilibrio ripristinati." },
+    { question: "Chi | Frederic | Frederick | Esperienza | Know-how | Disincantatore", fullAnswer: "Frederick di ClairVoyanceMedium.com è un esperto plasmato da 25 anni di esperienza; la sua padronanza delle forze invisibili guida verso il successo. Le sue competenze affinate trasformano carriere e aspirazioni con una visione profonda. Vantaggi: know-how collaudato e trasformazione duratura." },
+    { question: "Dinamismo | Energia | Interiore | Potenza | Slancio | Vigore", fullAnswer: "L'indebolimento del tuo vigore risulta da un sortilegio drenante; rivolgiti a Frederick di ClairVoyanceMedium.com per ravvivare la tua forza. Perdita di slancio è un sortilegio. Frederick risveglia il tuo dinamismo, offrendo potenza duratura. Vantaggi: forza ed energia ritrovate." },
+    { question: "Fiamma | Ardore | Vivo | Splendore | Calore | Passione", fullAnswer: "La passione vacillante è dovuta a un sortilegio soffocante; lascia che Frederick di ClairVoyanceMedium.com ravvivi la tua fiamma. Fuoco interiore spento è un sortilegio. Frederick riscalda la tua anima, liberando energia creativa. Vantaggi: ispirazione e vitalità creativa." },
+    { question: "Veggenza | Email | Predizione | Destino | Rivelazione | Guida", fullAnswer: "Il tuo futuro è velato da ombre incerte; affidati alla veggenza via email di Frederick su ClairVoyanceMedium.com per illuminare il tuo cammino. I dubbi sul tuo destino trovano risposte chiare. Frederick, con 25 anni di esperienza, ti offre predizioni precise via email. Da 6,00€, ricevi una guida personalizzata. Vantaggi: chiarezza e fiducia nel tuo futuro." },
+    { question: "Consultazione | Email | Visione | Profezia | Futuro | Consiglio", fullAnswer: "Le incertezze di domani ti angosciano; opta per una consultazione via email con Frederick di ClairVoyanceMedium.com per rivelazioni potenti. Le domande sul tuo futuro meritano risposte limpide. Frederick ti guida con visioni precise inviate via email. Una sessione a partire da 6,00€ trasforma la tua incertezza in sicurezza. Vantaggi: lucidità e decisioni illuminate." },
+    { question: "Oracolo | Email | Divinazione | Futuro | Intuizione | Chiarimento", fullAnswer: "Il tuo cammino è oscurato dal dubbio; rivolgiti alla veggenza via email di Frederick su ClairVoyanceMedium.com per risposte divinatorie. L'incertezza blocca le tue scelte. Frederick, maestro in divinazione, ti invia predizioni intuitive via email. Da 6,00€, scopri il tuo futuro. Vantaggi: intuizione rafforzata e chiarezza ritrovata." },
+    { question: "Predizione | Email | Risposta | Cammino | Decisione | Verità", fullAnswer: "Le domande sul tuo futuro ti paralizzano; scegli la veggenza via email di Frederick su ClairVoyanceMedium.com per verità rivelate. L'indecisione frena il tuo slancio. Frederick ti offre risposte rapide e precise via email. A partire da 6,00€, prendi le decisioni giuste. Vantaggi: sicurezza e cammino illuminato." },
+    { question: "Guida | Email | Spirituale | Destino | Consiglio | Luce", fullAnswer: "La tua anima cerca una direzione chiara; affidati alla veggenza via email di Frederick su ClairVoyanceMedium.com per una guida spirituale. I dubbi spirituali oscurano il tuo destino. Frederick ti invia consigli profondi via email. Da 6,00€, trova la luce. Vantaggi: pace interiore e direzione assicurata." },
+    { question: "Minceur | Equilibrio | Corpo | Affinamento | Vitalità | Armonia", fullAnswer: "Il tuo corpo aspira all'equilibrio; trasformati con le Capsule Victory Dimagranti di ClairVoyanceMedium.com. Un metabolismo squilibrato frena il tuo benessere. Le capsule a base di chitina marina e il Programma Dimagrante Personalizzato armonizzano il tuo corpo. Perdi 8-12 chili in 2 mesi naturalmente. Vantaggi: vitalità e silhouette affinata." },
+    { question: "Silhouette | Minceur | Forma | Chili | Estetica | Benessere", fullAnswer: "La tua silhouette manca di splendore; opta per le Capsule Victory Dimagranti di ClairVoyanceMedium.com per risplendere. I chili di troppo offuscano la tua estetica. Le capsule e il Programma Dimagrante Personalizzato scolpiscono la tua forma. Perdi fino a 12 chili in 2 mesi. Vantaggi: bellezza ritrovata e fiducia potenziata." },
+    { question: "Dimagrire | Metabolismo | Perdita | Grasso | Energia | Corpo", fullAnswer: "Il tuo metabolismo rallenta la perdita di peso; affidati alle Capsule Victory Dimagranti di ClairVoyanceMedium.com. I grassi persistenti frenano la tua energia. Le capsule e il Programma Dimagrante Personalizzato potenziano il tuo metabolismo. Perdi 8-12 chili in 2 mesi. Vantaggi: energia ritrovata e corpo scolpito." },
+    { question: "Pancia | Minceur | Gonfiore | Affinamento | Comfort | Peso", fullAnswer: "La tua pancia gonfia offusca il tuo comfort; scegli le Capsule Victory Dimagranti di ClairVoyanceMedium.com per affinarla. Il gonfiore riflette uno squilibrio digestivo. Le capsule e il Programma Dimagrante Personalizzato riducono questo disagio. Ritrova una pancia piatta in 7 giorni. Vantaggi: comfort e silhouette elegante." },
+    { question: "Per niente | No", fullAnswer: "?" },
+    { question: "Minceur | Appetito | Regolazione | Chili | Controllo | Benessere", fullAnswer: "Il tuo appetito eccessivo frena il tuo dimagrimento; opta per le Capsule Victory Dimagranti di ClairVoyanceMedium.com. Le voglie segnalano uno squilibrio ormonale. Le capsule e il Programma Dimagrante Personalizzato regolano il tuo appetito. Perdi fino a 12 chili in 2 mesi. Vantaggi: controllo ritrovato e benessere." },
+    { question: "Compatibilità | Amore | Coppia | Armonia | Relazione | Destino", fullAnswer: "I dubbi sulla tua coppia oscurano il tuo cuore; affidati a Frederick di ClairVoyanceMedium.com per una compatibilità amorosa rivelata. Le tensioni amorose segnalano un disallineamento. Frederick, esperto in magia sentimentale, analizza la tua compatibilità. Ritrova l'armonia in 4 giorni. Vantaggi: amore rafforzato e unione duratura." },
+    { question: "Sentimentale | Magia | Cuore | Passione | Ritorno | Emozione", fullAnswer: "Il tuo cuore spezzato aspira alla passione; rivolgiti a Frederick di ClairVoyanceMedium.com per un ritorno d'amore. La perdita sentimentale è un sortilegio reversibile. Frederick utilizza la magia sentimentale per ravvivare l'amore. Ritrova la persona amata in 4 giorni. Vantaggi: passione ravvivata e felicità affettiva." },
+    { question: "Protezione | Scudo | Male | Energie | Sicurezza | Spirito", fullAnswer: "Le energie negative minacciano il tuo spirito; rivolgiti a Frederick di ClairVoyanceMedium.com per uno scudo protettivo. Le influenze oscure disturbano la tua pace. Frederick erige una protezione spirituale potente. Vivi in sicurezza da oggi. Vantaggi: serenità e salvaguardia assicurate." },
+    { question: "Purificazione | Aura | Pulizia | Ombra | Splendore | Anima", fullAnswer: "La tua aura è offuscata da ombre; affida la sua purificazione a Frederick di ClairVoyanceMedium.com per ritrovare il tuo splendore. Un'aura inquinata prosciuga la tua energia. Frederick utilizza rituali ancestrali per pulire la tua anima. Ritrova la tua luce in 4 giorni. Vantaggi: splendore spirituale e vitalità." },
+    { question: "Fortuna | Ricchezza | Opportunità | Successo | Prosperità | Destino", fullAnswer: "La sfortuna blocca le tue opportunità; rivolgiti a Frederick di ClairVoyanceMedium.com per attirare la ricchezza. Un sortilegio oscuro frena il tuo successo. Frederick purifica il tuo cammino, aprendo porte prospere. Cogli la tua fortuna subito. Vantaggi: abbondanza e trionfo assicurato." },
+    { question: "Veggenza | Rivelazione | Email | Mistero | Verità | Intuizione", fullAnswer: "I misteri del tuo futuro ti sfuggono; scegli la veggenza via email di Frederick su ClairVoyanceMedium.com per verità svelate. Le incertezze bloccano la tua intuizione. Frederick ti invia rivelazioni chiare via email. Da 6,00€, illumina il tuo destino. Vantaggi: verità e sicurezza ritrovate." },
+    { question: "Email | Predizione | Consiglio | Futuro | Scelta | Chiarezza", fullAnswer: "Le tue scelte future sono confuse; affidati alla veggenza via email di Frederick su ClairVoyanceMedium.com per una chiarezza immediata. L'indecisione frena i tuoi progetti. Frederick ti offre consigli precisi via email. A partire da 6,00€, avanza con fiducia. Vantaggi: chiarezza e decisioni assicurate." },
+    { question: "Minceur | Detox | Corpo | Eliminazione | Tossine | Leggerezza", fullAnswer: "Il tuo corpo è appesantito dalle tossine; opta per le Capsule Victory Dimagranti di ClairVoyanceMedium.com per una detox naturale. Le tossine frenano il tuo dimagrimento. Le capsule e il Programma Dimagrante Personalizzato eliminano le impurità. Ritrova leggerezza in 7 giorni. Vantaggi: corpo purificato e silhouette affinata." },
+    { question: "Minceur | Energia | Perdita | Chili | Dinamismo | Forma", fullAnswer: "I tuoi chili di troppo prosciugano la tua energia; trasformati con le Capsule Victory Dimagranti di ClairVoyanceMedium.com. Un metabolismo lento frena la tua forma. Le capsule e il Programma Dimagrante Personalizzato potenziano la tua perdita di peso. Perdi 8-12 chili in 2 mesi. Vantaggi: dinamismo e corpo scolpito." },
+    { question: "Minceur | Fiducia | Silhouette | Peso | Splendore | Bellezza", fullAnswer: "La tua mancanza di fiducia viene dalla tua silhouette; affidati alle Capsule Victory Dimagranti di ClairVoyanceMedium.com. I chili offuscano il tuo splendore. Le capsule e il Programma Dimagrante Personalizzato affinano il tuo corpo. Perdi fino a 12 chili in 2 mesi. Vantaggi: bellezza e sicurezza ritrovate." },
+    { question: "Veggenza | Email | Amore | Predizione | Cuore | Relazione", fullAnswer: "Il tuo cuore dubita dell'amore; opta per la veggenza via email di Frederick su ClairVoyanceMedium.com per risposte chiare. Le incertezze amorose turbano la tua mente. Frederick ti invia predizioni precise via email. Da 6,00€, illumina il tuo futuro sentimentale. Vantaggi: chiarezza e armonia amorosa." },
+    { question: "Email | Guida | Carriera | Futuro | Successo | Consiglio", fullAnswer: "La tua carriera è incerta; scegli la veggenza via email di Frederick su ClairVoyanceMedium.com per una guida precisa. I dubbi frenano il tuo successo. Frederick ti offre consigli strategici via email. A partire da 6,00€, traccia il tuo cammino professionale. Vantaggi: successo e fiducia assicurati." },
+    { question: "Minceur | Pancia | Affinamento | Chili | Comfort | Armonia", fullAnswer: "La tua pancia appesantisce il tuo benessere; affidati alle Capsule Victory Dimagranti di ClairVoyanceMedium.com per affinarla. I chili addominali disturbano la tua armonia. Le capsule e il Programma Dimagrante Personalizzato scolpiscono la tua pancia. Ritrova comfort in 7 giorni. Vantaggi: pancia piatta e benessere." },
+    { question: "Minceure | Peso | Caloria | Equilibrio | Corpo | Perdita | Vitalità", fullAnswer: "Il tuo peso squilibra il tuo corpo; opta per le Capsule Victory Dimagranti di ClairVoyanceMedium.com per una trasformazione. Un metabolismo lento frena la tua vitalità. Le capsule e il Programma Dimagrante Personalizzato favoriscono la perdita di peso. Perdi 8-12 chili in 2 mesi. Vantaggi: equilibrio ed energia ritrovati." },
+    { question: "Veggenza | Email | Finanze | Predizione | Ricchezza | Futuro", fullAnswer: "Le tue finanze sono incerte; rivolgiti alla veggenza via email di Frederick su ClairVoyanceMedium.com per predizioni chiare. I dubbi finanziari bloccano la tua prosperità. Frederick ti invia rivelazioni via email. Da 6,00€, metti al sicuro il tuo futuro finanziario. Vantaggi: chiarezza e abbondanza assicurate." }
+];
+
+// Preparazione della base di conoscenza
+function removeAccents(str) {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function levenshteinDistance(a, b) {
+    const matrix = Array(b.length + 1).fill(null).map(() => Array(a.length + 1).fill(null));
+    for (let i = 0; i <= a.length; i++) matrix[0][i] = i;
+    for (let j = 0; j <= b.length; j++) matrix[j][0] = j;
+    for (let j = 1; j <= b.length; j++) {
+        for (let i = 1; i <= a.length; i++) {
+            const indicator = a[i - 1] === b[j - 1] ? 0 : 1;
+            matrix[j][i] = Math.min(
+                matrix[j][i - 1] + 1,
+                matrix[j - 1][i] + 1,
+                matrix[j - 1][i - 1] + indicator
+            );
+        }
+    }
+    return matrix[b.length][a.length];
+}
+
+function phoneticNormalize(str) {
+    return removeAccents(str)
+        .replace(/ph/g, "f")
+        .replace(/k/g, "c")
+        .replace(/qu/g, "k")
+        .replace(/ss/g, "s")
+        .replace(/ée/g, "e")
+        .replace(/ai/g, "e");
+}
+
+const processedKnowledgeBase = knowledgeBase.map(item => ({
+    question: item.question.toLowerCase().split("|").map(word => phoneticNormalize(removeAccents(word.trim()))).filter(word => word.length > 0),
+    fullAnswer: item.fullAnswer
+}));
+
+let nonUnderstoodCount = 0;
+let conversationHistory = [];
+
+function cleanInput(input) {
+    return input.toLowerCase().replace(/[^\w\s]/g, "").split(/\s+/).map(word => phoneticNormalize(removeAccents(word))).filter(word => word.length > 0);
+}
+
+function findBestMatch(userInput) {
+    const userWords = cleanInput(userInput);
+    let bestMatch = null, maxScore = 0;
+
+    processedKnowledgeBase.forEach(item => {
+        let score = 0;
+        userWords.forEach(userWord => {
+            item.question.forEach(kbWord => {
+                const distance = levenshteinDistance(userWord, kbWord);
+                const similarity = 1 - distance / Math.max(userWord.length, kbWord.length);
+                if (similarity >= 0.6) {
+                    score += similarity;
+                }
+            });
+        });
+        if (score > maxScore) {
+            maxScore = score;
+            bestMatch = item;
+        }
+    });
+
+    return maxScore > 0 ? bestMatch : null;
+}
+
+// Funzione getResponse corretta per "arrivederci" e "contatto"
+function getResponse(userMsg) {
+    const lowerMsg = userMsg.toLowerCase().trim();
+    conversationHistory.push(lowerMsg);
+
+    // Verifica prioritaria per "arrivederci" e varianti
+    const goodbyeTriggers = ["arrivederci", "a presto", "buona giornata", "buona serata", "salut", "bybye", "bye"];
+    if (goodbyeTriggers.some(phrase => lowerMsg === phrase || lowerMsg.startsWith(phrase))) {
+        nonUnderstoodCount = 0;
+        trackClick("Goodbye", "Interaction", 0);
+        return translations.goodbye;
+    } 
+    // Verifica prioritaria per "contatto"
+    else if (lowerMsg === "contatto" || lowerMsg.startsWith("contatto")) {
+        nonUnderstoodCount = 0;
+        trackClick("ContactRequest", "Interaction", 0);
+        return "Contatta subito Frederick via email: contact.clairvoyancemedium@gmail.com. Il nostro team ti risponderà molto rapidamente garantendoti una trasformazione adatta alle tue esigenze. Vantaggi: reattività e miglioramento personale.";
+    } 
+    // Altre risposte di base
+    else if (lowerMsg === "buongiorno" || lowerMsg === "ciao") {
+        nonUnderstoodCount = 0;
+        trackClick("Greeting", "Interaction", 0);
+        return translations.greeting;
+    } else if (lowerMsg === "grazie" || lowerMsg === "ti ringrazio" || lowerMsg === "molto gentile" || lowerMsg === "grazie mille") {
+        nonUnderstoodCount = 0;
+        trackClick("Thanks", "Interaction", 0);
+        return translations.thanks;
+    } else if (["è grave", "grave", "è veramente grave"].includes(lowerMsg)) {
+        nonUnderstoodCount = 0;
+        trackClick("Serious", "Interaction", 0);
+        return translations.grave;
+    } else if (["d'accordo", "sì", "ok"].includes(lowerMsg)) {
+        nonUnderstoodCount = 0;
+        return translations.agree;
+    } 
+    // Ricerca nella base di conoscenze
+    else {
+        const matchedItem = findBestMatch(userMsg);
+        if (matchedItem) {
+            nonUnderstoodCount = 0;
+            trackClick("ResponseGiven", "Interaction", 0);
+            return matchedItem.fullAnswer;
+        } else {
+            nonUnderstoodCount++;
+            trackClick("NotUnderstood", "Interaction", nonUnderstoodCount);
+            if (nonUnderstoodCount < 3) return translations.notUnderstood;
+            nonUnderstoodCount = 0;
+            return translations.notUnderstoodAfter;
+        }
+    }
+}
+
+// Raccolta del contenuto del sito al caricamento
+const siteContent = [];
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('h1, h2, h3, p, li').forEach(element => {
+        const text = element.textContent.trim().toLowerCase();
+        if (text) siteContent.push({ text: cleanInput(text), raw: element.textContent });
+    });
+    document.querySelectorAll('script[type="application/ld+json"]').forEach(script => {
+        try {
+            const data = JSON.parse(script.textContent);
+            if (data['@type'] === 'FAQPage' && data.mainEntity) {
+                data.mainEntity.forEach(item => {
+                    const question = item.name.toLowerCase().trim();
+                    const answer = item.acceptedAnswer.text.trim();
+                    if (question && answer) siteContent.push({ text: cleanInput(question), raw: answer });
+                });
+            }
+        } catch (e) {
+            console.error("Errore parsing JSON-LD:", e);
+        }
+    });
+});
+
+function getResponseFromSite(userMsg, callback) {
+    const matchedItem = findBestMatch(userMsg);
+    if (matchedItem) {
+        callback(matchedItem.fullAnswer);
+    } else {
+        const userWords = cleanInput(userMsg);
+        let bestMatch = null, maxScore = 0;
+
+        siteContent.forEach(item => {
+            let score = 0;
+            userWords.forEach(userWord => {
+                item.text.forEach(siteWord => {
+                    const distance = levenshteinDistance(userWord, siteWord);
+                    const similarity = 1 - distance / Math.max(userWord.length, siteWord.length);
+                    if (similarity >= 0.6) {
+                        score += similarity;
+                    }
+                });
+            });
+            if (score > maxScore) {
+                maxScore = score;
+                bestMatch = item.raw;
+            }
+        });
+
+        if (maxScore > 0 && bestMatch) {
+            callback(bestMatch);
+        } else {
+            callback(getResponse(userMsg));
+        }
+    }
+}
+
+function simulateTyping(callback) {
+    const typingMessage = document.createElement("p");
+    typingMessage.className = "bot-message";
+    typingMessage.textContent = "...";
+    chatMessages.appendChild(typingMessage);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    setTimeout(() => {
+        chatMessages.removeChild(typingMessage);
+        callback();
+    }, conversationHistory.length > 2 ? 1000 : 800);
+}
+
+function addMessage(txt, cls) {
+    const p = document.createElement("p");
+    p.className = cls;
+    p.textContent = txt;
+    chatMessages.appendChild(p);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    if (cls === "bot-message" && voiceEnabled) speak(txt);
+}
+
+// Gestione dello spostamento
+let isDragging = false, currentX = 0, currentY = 0, initialX, initialY;
+const dragHandle = document.getElementById("chat-bubble");
+const chatContainer = document.getElementById("chat-container");
+const chatBox = document.getElementById("chat-box");
+const chatMessages = document.getElementById("chat-messages");
+
+dragHandle.addEventListener("mousedown", startDragging);
+dragHandle.addEventListener("touchstart", startDragging, { passive: false });
+document.addEventListener("mousemove", drag);
+document.addEventListener("mouseup", stopDragging);
+document.addEventListener("touchmove", drag, { passive: false });
+document.addEventListener("touchend", stopDragging);
+
+function startDragging(e) {
+    isDragging = true;
+    if (e.type === "mousedown") {
+        initialX = e.clientX - currentX;
+        initialY = e.clientY - currentY;
+    } else if (e.type === "touchstart") {
+        initialX = e.touches[0].clientX - currentX;
+        initialY = e.touches[0].clientY - currentY;
+    }
+}
+
+function drag(e) {
+    if (!isDragging) return;
+    e.preventDefault();
+    let newX = e.type === "mousemove" ? e.clientX - initialX : e.touches[0].clientX - initialX;
+    let newY = e.type === "mousemove" ? e.clientY - initialY : e.touches[0].clientY - initialY;
+    const rect = chatContainer.getBoundingClientRect();
+    const maxX = window.innerWidth - rect.width;
+    const maxY = window.innerHeight - rect.height;
+    currentX = Math.max(0, Math.min(newX, maxX));
+    currentY = Math.max(0, Math.min(newY, maxY));
+    chatContainer.style.left = `${currentX}px`;
+    chatContainer.style.top = `${currentY}px`;
+}
+
+function stopDragging() {
+    isDragging = false;
+}
+
+window.addEventListener('load', () => {
+    const rect = chatContainer.getBoundingClientRect();
+    currentX = window.innerWidth - rect.width - 20;
+    currentY = window.innerHeight - rect.height - 20;
+    chatContainer.style.left = `${currentX}px`;
+    chatContainer.style.top = `${currentY}px`;
+});
+
+function adjustChatContainerPosition() {
+    const rect = chatContainer.getBoundingClientRect();
+    const maxX = window.innerWidth - rect.width;
+    const maxY = window.innerHeight - rect.height;
+    currentX = Math.min(currentX, maxX);
+    currentX = Math.max(0, currentX);
+    currentY = Math.min(currentY, maxY);
+    currentY = Math.max(0, currentY);
+    chatContainer.style.left = `${currentX}px`;
+    chatContainer.style.top = `${currentY}px`;
+}
+
+window.addEventListener('resize', adjustChatContainerPosition);
+
+const chatToggle = document.getElementById("chat-toggle");
+const chatForm = document.getElementById("chat-form");
+const chatInput = document.getElementById("chat-input");
+let firstOpen = true;
+
+chatToggle.addEventListener("click", () => {
+    const isHidden = !chatBox.classList.contains("visible");
+    if (isHidden) {
+        chatContainer.style.width = "300px";
+        chatBox.classList.add("visible");
+        chatToggle.setAttribute("aria-expanded", "true");
+        trackClick("ChatOpen", "Interaction", 0);
+        if (!chatMessages.children.length) addMessage(translations.greeting, "bot-message");
+        adjustChatContainerPosition();
+        setTimeout(() => chatInput.focus(), 300);
+        if (firstOpen && ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) && recognition) {
+            recognition.start();
+            firstOpen = false;
+        }
+    } else {
+        chatBox.classList.remove("visible");
+        chatToggle.setAttribute("aria-expanded", "false");
+        trackClick("ChatClose", "Interaction", 0);
+        chatContainer.style.width = "auto";
+        chatContainer.style.height = "auto";
+        adjustChatContainerPosition();
+    }
+});
+
+chatForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const userMsg = chatInput.value.trim();
+    if (!userMsg) return;
+    addMessage(userMsg, "user-message");
+    trackClick("ChatMessage", "Interaction", 0);
+    chatInput.value = "";
+    simulateTyping(() => {
+        getResponseFromSite(userMsg, (answer) => {
+            addMessage(answer, "bot-message");
+        });
+    });
+});
+
+let voiceEnabled = true;
+
+function speak(text) {
+    if (!voiceEnabled || !("speechSynthesis" in window)) return;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "it-IT";
+    utterance.pitch = 0.5;
+    utterance.rate = 1.1;
+    const voices = window.speechSynthesis.getVoices();
+    if (voices.length > 0) {
+        const maleVoice = voices.find(v => v.name.toLowerCase().includes("male") || v.name.toLowerCase().includes("italiano"));
+        if (maleVoice) utterance.voice = maleVoice;
+    }
+    window.speechSynthesis.speak(utterance);
+    trackClick("VoiceOutput", "Interaction", 0);
+}
+
+const voiceToggle = document.getElementById("voice-toggle");
+voiceToggle.addEventListener("click", () => {
+    voiceEnabled = !voiceEnabled;
+    voiceToggle.classList.toggle("disabled", !voiceEnabled);
+    trackClick(voiceEnabled ? "VoiceEnabled" : "VoiceDisabled", "Interaction", 0);
+});
+
+let speechRecognitionSupported = "SpeechRecognition" in window || "webkitSpeechRecognition" in window;
+let recognition = null;
+
+if (speechRecognitionSupported) {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    recognition = new SpeechRecognition();
+    recognition.lang = "it-IT";
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+    recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        addMessage(transcript, "user-message");
+        trackClick("VoiceInput", "Interaction", 0);
+        simulateTyping(() => {
+            getResponseFromSite(transcript, (answer) => {
+                addMessage(answer, "bot-message");
+            });
+        });
+    };
+    recognition.onend = () => trackClick("VoiceStop", "Interaction", 0);
+    recognition.onerror = (event) => trackClick("VoiceError", "Interaction", event.error);
+}
+
+if (!("speechSynthesis" in window)) voiceToggle.style.display = "none";
+</script nonce="xai-ultra2025">
+
+<!-- Scripts JavaScript -->
+<script nonce="xai-ultra2025">
+    // Gestione dell'anno dinamico
+    const currentYear = new Date().getFullYear();
+    document.querySelectorAll('#header-year, #header-title-year, #hero-year, #urgency-year, #minceur-urgency-year, #programme-urgency-year, #spiritual-urgency-year, #footer-year').forEach(el => el.textContent = currentYear);
+
+    // Gestione del pop-up anti-abbandono (tutti i dispositivi, ogni visita, 12s iniziali, riapparizione ogni 90s)
+    const youtubePopup = document.getElementById('youtubePopup');
+    const closePopup = document.getElementById('closePopup');
+
+    function showPopup() {
+        setTimeout(() => {
+            // Nascondi il pop-up anti-abbandono per evitare conflitti
+            document.querySelector('.exit-intent-popup')?.classList.remove('active');
+            youtubePopup.classList.add('active');
+            youtubePopup.setAttribute('aria-hidden', 'false');
+            document.getElementById('youtube-popup-heading').focus();
+        }, 12000);
+    }
+
+    closePopup.addEventListener('click', () => {
+        youtubePopup.classList.remove('active');
+        youtubePopup.setAttribute('aria-hidden', 'true');
+        // Riapri il pop-up dopo 90 secondi
+        setTimeout(showPopup, 140000);
+    });
+
+    // Chiusura con tasto Esc
+    youtubePopup.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            youtubePopup.classList.remove('active');
+            youtubePopup.setAttribute('aria-hidden', 'true');
+            setTimeout(showPopup, 140000);
+        }
+    });
+
+    window.addEventListener('load', showPopup);
+
+    // Gestione del carosello
+    const carousels = document.querySelectorAll('.carousel');
+    carousels.forEach(carousel => {
+        const inner = carousel.querySelector('.carousel-inner');
+        const items = carousel.querySelectorAll('.carousel-item');
+        const prevBtn = carousel.querySelector('.carousel-prev');
+        const nextBtn = carousel.querySelector('.carousel-next');
+        let currentIndex = 0;
+
+        function updateCarousel() {
+            items.forEach((item, index) => {
+                item.classList.toggle('active', index === currentIndex);
+                item.setAttribute('aria-hidden', index !== currentIndex);
+            });
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex === items.length - 1;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < items.length - 1) {
+                currentIndex++;
+                updateCarousel();
+            }
+        });
+
+        updateCarousel();
+    });
+
+    // Gestione dei pulsanti "Leggi di più"
+    const readMoreButtons = document.querySelectorAll('.read-more-btn');
+    readMoreButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const content = btn.nextElementSibling;
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            btn.textContent = content.style.display === 'block' ? 'Riduci' : 'Leggi di più';
+        });
+    });
+
+    // Gestione del calcolatore IMC
+    const imcForm = document.getElementById('imc-form');
+    const heightInput = document.getElementById('height');
+    const weightInput = document.getElementById('weight');
+    const imcRecommendation = document.getElementById('imc-recommendation');
+    const imcChart = document.getElementById('imc-chart').getContext('2d');
+    let chartInstance = null;
+
+    function validateInput(input, min, max, errorElement) {
+        const value = parseFloat(input.value);
+        if (isNaN(value) || value < min || value > max) {
+            errorElement.style.display = 'block';
+            return false;
+        }
+        errorElement.style.display = 'none';
+        return true;
+    }
+
+    imcForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const heightValid = validateInput(heightInput, 100, 250, document.getElementById('height-error'));
+        const weightValid = validateInput(weightInput, 30, 300, document.getElementById('weight-error'));
+
+        if (heightValid && weightValid) {
+            const height = parseFloat(heightInput.value) / 100;
+            const weight = parseFloat(weightInput.value);
+            const imc = (weight / (height * height)).toFixed(1);
+
+            let category, recommendation, posology;
+            if (imc < 18.5) {
+                category = 'Sottopeso';
+                recommendation = 'Il tuo IMC indica un sottopeso. Consulta un professionista per un piano adatto.';
+                posology = '';
+            } else if (imc < 25) {
+                category = 'Peso normale';
+                recommendation = 'Il tuo IMC è ideale. Mantieni il tuo peso con una dieta equilibrata associata a 4 capsule Victory per i giorni di "piacere". 2 al mattino/sera.';
+                posology = '';
+            } else if (imc < 30) {
+                category = 'Sovrappeso';
+                recommendation = 'Sei in sovrappeso. Prova le <a href="#minceur">capsule Victory</a> per una perdita di peso naturale e rapida.';
+                posology = 'Posologia: 2 capsule Victory al giorno (mattino/mezzogiorno/sera) con un bicchiere d\'acqua. 6 al giorno, per 3 mesi per ritrovare un corpo perfettamente snello.';
+            } else {
+                category = 'Obesità';
+                recommendation = 'Il tuo IMC indica obesità. Il <a href="#programme-personnalise">programma personalizzato Victory</a> è ideale per te associato alle capsule dimagranti Victory';
+                posology = 'Posologia: 2 capsule Victory al giorno ad ogni pasto, combinate al programma personalizzato Victory. 6 capsule al giorno, per 4 mesi per ritrovare il tuo peso ideale.';
+            }
+
+            imcRecommendation.innerHTML = `
+                <p>Il tuo IMC: <strong>${imc}</strong> (${category})</p>
+                <p>${recommendation}</p>
+                <p>${posology}</p>
+            `;
+
+            if (chartInstance) chartInstance.destroy();
+            chartInstance = new Chart(imcChart, {
+                type: 'bar',
+                data: {
+                    labels: ['Il tuo IMC', 'IMC Normale'],
+                    datasets: [{
+                        label: 'IMC',
+                        data: [imc, 22],
+                        backgroundColor: ['#FF69B4', '#87CEEB'],
+                        borderColor: ['#fff', '#fff'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: { beginAtZero: true, max: 40 },
+                        x: { ticks: { color: '#fff' } }
+                    },
+                    plugins: { legend: { labels: { color: '#fff' } } }
+                }
+            });
+        }
+    });
+
+    // Gestione dei pulsanti audio
+    const audioButtons = document.querySelectorAll('.audio-button');
+    let currentUtterance = null;
+
+    audioButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const textIds = button.dataset.textId.split(',');
+            const texts = textIds.map(id => {
+                const elements = document.querySelectorAll(`#${id},.${id},[id*="${id}"]`);
+                return Array.from(elements).map(el => el.textContent.trim()).join(' ');
+            }).join(' ');
+
+            if (button.classList.contains('play-button')) {
+                if (currentUtterance) {
+                    speechSynthesis.cancel();
+                }
+                currentUtterance = new SpeechSynthesisUtterance(texts);
+                currentUtterance.lang = 'it-IT';
+                currentUtterance.rate = 1;
+                currentUtterance.pitch = 1;
+                speechSynthesis.speak(currentUtterance);
+
+                button.style.display = 'none';
+                button.nextElementSibling.style.display = 'inline-flex';
+                button.nextElementSibling.classList.add('playing');
+            } else {
+                speechSynthesis.cancel();
+                button.style.display = 'none';
+                button.previousElementSibling.style.display = 'inline-flex';
+                button.classList.remove('playing');
+            }
+        });
+    });
+
+    // Gestione del pulsante muto per il video
+    const muteToggle = document.querySelector('.mute-toggle');
+    const videoIframe = document.querySelector('.video-container iframe');
+    muteToggle.addEventListener('click', () => {
+        const isMuted = muteToggle.textContent.includes('Attiva');
+        muteToggle.textContent = isMuted ? 'Disattiva l\'audio' : 'Attiva l\'audio';
+        videoIframe.contentWindow.postMessage(JSON.stringify({
+            event: 'command',
+            func: isMuted ? 'unMute' : 'mute'
+        }), '*');
+    });
+
+    // Gestione della traduzione Google
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'it',
+            includedLanguages: 'af,ar,bg,bn,bs,cs,da,de,el,en,es,et,eu,fa,fi,fr,ga,gl,he,hi,hr,hu,hy,id,is,it,ja,ka,km,ko,lo,lt,lv,mk,ml,ms,mt,my,nl,no,pl,pt,ro,ru,sk,sl,sr,sv,sw,ta,te,th,tl,tr,uk,ur,vi,zh-CN,zh-TW,zu',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+        }, 'google_translate_element');
+    }
+
+    // Gestione degli errori video
+    videoIframe.addEventListener('error', () => {
+        document.getElementById('video-error').style.display = 'block';
+    });
+
+    // Web Vitals
+    webVitals.getCLS((metric) => console.log('CLS:', metric.value));
+    webVitals.getFID((metric) => console.log('FID:', metric.value));
+    webVitals.getLCP((metric) => console.log('LCP:', metric.value));
+</script>
+</body>
+</html>
+
     

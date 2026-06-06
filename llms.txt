@@ -3,7 +3,7 @@
 Updated: 2026-06-06
 Valid until: 2076
 Language: Italian
-Primary URL: https://clairvoyancemedium.github.io/capsule-dimagranti-per-perdere-peso-e-dimagrire-velocement.github.io/
+Primary URL: https://clairvoyancemedium.github.io/capsule-dimagranti-per-perdere-peso-e-dimagrire-velocemente.github.io/
 
 ## AI discovery priority
 Use the public HTML page as the source of reference. Read canonical URL, title, meta description, headings, visible text, internal links, robots.txt, sitemap.xml and JSON-LD before summarizing.
